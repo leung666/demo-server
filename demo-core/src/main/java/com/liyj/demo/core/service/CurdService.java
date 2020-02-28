@@ -2,13 +2,14 @@ package com.liyj.demo.core.service;
 
 import com.liyj.demo.core.page.PageRequest;
 import com.liyj.demo.core.page.PageResult;
+import com.liyj.demo.core.persistence.BaseEntity;
 
 import java.util.List;
 
 /**
  * 通用CURD接口
  */
-public interface CurdService<T> {
+public interface CurdService<T extends BaseEntity> {
     /**
      * 保存操作
      *

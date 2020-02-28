@@ -1,19 +1,16 @@
 package com.liyj.demo.admin.data;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.liyj.demo.core.persistence.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import java.util.Date;
-
+@EqualsAndHashCode(callSuper = true)
 @Data
 @ToString
 @TableName(value = "sys_dict")
-public class SysDict {
-    @TableId(type= IdType.AUTO)
-    private Long id;
+public class SysDict extends BaseEntity {
 
     private String value;
 
@@ -24,14 +21,6 @@ public class SysDict {
     private String description;
 
     private Long sort;
-
-    private String createBy;
-
-    private Date createTime;
-
-    private String lastUpdateBy;
-
-    private Date lastUpdateTime;
 
     private String remarks;
 

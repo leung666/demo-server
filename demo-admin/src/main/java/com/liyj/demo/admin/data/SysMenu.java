@@ -1,19 +1,19 @@
 package com.liyj.demo.admin.data;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.liyj.demo.core.persistence.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import java.util.Date;
+import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @ToString
 @TableName(value = "sys_menu")
-public class SysMenu {
-    @TableId(type= IdType.AUTO)
-    private Long id;
+public class SysMenu extends BaseEntity {
 
     private String name;
 
@@ -29,14 +29,13 @@ public class SysMenu {
 
     private Integer orderNum;
 
-    private String createBy;
+    @TableField(exist = false)
+    private String parentName;
 
-    private Date createTime;
+    @TableField(exist = false)
+    private Integer level;
 
-    private String lastUpdateBy;
-
-    private Date lastUpdateTime;
-
-    private Byte delFlag;
+    @TableField(exist = false)
+    private List<SysMenu> children;
 
 }

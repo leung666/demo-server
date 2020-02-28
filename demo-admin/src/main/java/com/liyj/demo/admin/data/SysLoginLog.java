@@ -1,19 +1,16 @@
 package com.liyj.demo.admin.data;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.liyj.demo.core.persistence.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import java.util.Date;
-
+@EqualsAndHashCode(callSuper = true)
 @Data
 @ToString
 @TableName(value = "sys_login_log")
-public class SysLoginLog {
-    @TableId(type= IdType.AUTO)
-    private Long id;
+public class SysLoginLog extends BaseEntity {
 
     private String userName;
 
@@ -21,11 +18,4 @@ public class SysLoginLog {
 
     private String ip;
 
-    private String createBy;
-
-    private Date createTime;
-
-    private String lastUpdateBy;
-
-    private Date lastUpdateTime;
 }

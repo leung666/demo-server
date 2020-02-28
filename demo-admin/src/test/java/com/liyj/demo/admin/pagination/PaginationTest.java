@@ -7,6 +7,8 @@ import com.liyj.demo.admin.dao.SysDictDao;
 import com.liyj.demo.admin.dao.SysUserDao;
 import com.liyj.demo.admin.data.SysDict;
 import com.liyj.demo.admin.data.SysUser;
+import com.liyj.demo.admin.service.SysUserService;
+import com.liyj.demo.core.page.PageRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +16,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -24,13 +28,19 @@ public class PaginationTest {
     private SysUserDao sysUserDao;
     @Resource
     private SysDictDao sysDictDao;
+    @Resource
+    private SysUserService sysUserService;
 
     @Test
-    public void iPageTest() {
-        IPage<SysUser> page = new Page<>(2, 2);
-        List<SysUser> list = sysUserDao.iPageSelect(page);
-        System.out.println("list.size=" + list.size());
-        System.out.println("page.total=" + page.getTotal());
+    public void iPage(){
+        PageRequest pageRequest = new PageRequest();
+        pageRequest.setPageNum(1);
+        pageRequest.setPageSize(20);
+        Map map = new HashMap<>();
+        map.put("name","admin");
+//        map.put("email","email");
+        pageRequest.setParams(map);
+        sysUserService.findPage(pageRequest);
     }
 
     @Test

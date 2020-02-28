@@ -1,5 +1,6 @@
 package com.liyj.demo.core.page;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.Data;
 
@@ -32,6 +33,15 @@ public class PageResult {
     private List<?> content;
 
     public static PageResult getPageResult(Page result) {
+        PageResult pageResult = new PageResult();
+        pageResult.setPageNum(result.getCurrent());
+        pageResult.setPageSize(result.getSize());
+        pageResult.setTotalSize(result.getTotal());
+        pageResult.setTotalPages(result.getPages());
+        pageResult.setContent(result.getRecords());
+        return pageResult;
+    }
+    public static PageResult getPageResult(IPage result) {
         PageResult pageResult = new PageResult();
         pageResult.setPageNum(result.getCurrent());
         pageResult.setPageSize(result.getSize());

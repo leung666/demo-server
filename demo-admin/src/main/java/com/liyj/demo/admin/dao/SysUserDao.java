@@ -1,13 +1,12 @@
 package com.liyj.demo.admin.dao;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.liyj.demo.admin.data.SysUser;
+import com.liyj.demo.core.persistence.BaseDao;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
 @Repository
-public interface SysUserDao extends BaseMapper<SysUser> {
-    List<SysUser> iPageSelect(IPage<SysUser> myPage);
+public interface SysUserDao extends BaseDao<SysUser> {
+    IPage<SysUser> findPage(IPage<SysUser> page, String name, String email);
 }
