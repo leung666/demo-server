@@ -90,6 +90,7 @@ public class JwtTokenUtils implements Serializable {
 
     /**
      * 根据请求令牌获取登录认证信息
+     *
      * @param request 令牌
      * @return 用户名
      */
@@ -97,19 +98,19 @@ public class JwtTokenUtils implements Serializable {
         Authentication authentication = null;
         // 获取请求携带的令牌
         String token = JwtTokenUtils.getToken(request);
-        if(token != null) {
+        if (token != null) {
             // 请求令牌不能为空
-            if(SecurityUtils.getAuthentication() == null) {
+            if (SecurityUtils.getAuthentication() == null) {
                 // 上下文中Authentication为空
                 Claims claims = getClaimsFromToken(token);
-                if(claims == null) {
+                if (claims == null) {
                     return null;
                 }
                 String username = claims.getSubject();
-                if(username == null) {
+                if (username == null) {
                     return null;
                 }
-                if(isTokenExpired(token)) {
+                if (isTokenExpired(token)) {
                     return null;
                 }
                 Object authors = claims.get(AUTHORITIES);
@@ -121,7 +122,7 @@ public class JwtTokenUtils implements Serializable {
                 }
                 authentication = new JwtAuthenticatioToken(username, null, authorities, token);
             } else {
-                if(validateToken(token, SecurityUtils.getUsername())) {
+                if (validateToken(token, SecurityUtils.getUsername())) {
                     // 如果上下文中Authentication非空，且请求令牌合法，直接返回当前登录认证信息
                     authentication = SecurityUtils.getAuthentication();
                 }
@@ -148,6 +149,7 @@ public class JwtTokenUtils implements Serializable {
 
     /**
      * 验证令牌
+     *
      * @param token
      * @param username
      * @return
@@ -159,6 +161,7 @@ public class JwtTokenUtils implements Serializable {
 
     /**
      * 刷新令牌
+     *
      * @param token
      * @return
      */
@@ -192,18 +195,19 @@ public class JwtTokenUtils implements Serializable {
 
     /**
      * 获取请求token
+     *
      * @param request
      * @return
      */
     public static String getToken(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
         String tokenHead = "Bearer ";
-        if(token == null) {
+        if (token == null) {
             token = request.getHeader("token");
-        } else if(token.contains(tokenHead)){
+        } else if (token.contains(tokenHead)) {
             token = token.substring(tokenHead.length());
         }
-        if("".equals(token)) {
+        if ("".equals(token)) {
             token = null;
         }
         return token;

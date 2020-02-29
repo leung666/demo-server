@@ -17,6 +17,7 @@ import com.liyj.demo.admin.security.JwtAuthenticatioToken;
 public class SecurityUtils {
     /**
      * 系统登录认证
+     *
      * @param request
      * @param username
      * @param password
@@ -37,6 +38,7 @@ public class SecurityUtils {
 
     /**
      * 获取令牌进行认证
+     *
      * @param request
      */
     public static void checkAuthentication(HttpServletRequest request) {
@@ -48,14 +50,15 @@ public class SecurityUtils {
 
     /**
      * 获取当前用户名
+     *
      * @return
      */
     public static String getUsername() {
         String username = null;
         Authentication authentication = getAuthentication();
-        if(authentication != null) {
+        if (authentication != null) {
             Object principal = authentication.getPrincipal();
-            if(principal != null && principal instanceof UserDetails) {
+            if (principal != null && principal instanceof UserDetails) {
                 username = ((UserDetails) principal).getUsername();
             }
         }
@@ -64,13 +67,14 @@ public class SecurityUtils {
 
     /**
      * 获取用户名
+     *
      * @return
      */
     public static String getUsername(Authentication authentication) {
         String username = null;
-        if(authentication != null) {
+        if (authentication != null) {
             Object principal = authentication.getPrincipal();
-            if(principal != null && principal instanceof UserDetails) {
+            if (principal != null && principal instanceof UserDetails) {
                 username = ((UserDetails) principal).getUsername();
             }
         }
@@ -79,10 +83,11 @@ public class SecurityUtils {
 
     /**
      * 获取当前登录信息
+     *
      * @return
      */
     public static Authentication getAuthentication() {
-        if(SecurityContextHolder.getContext() == null) {
+        if (SecurityContextHolder.getContext() == null) {
             return null;
         }
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

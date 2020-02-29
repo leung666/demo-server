@@ -1,0 +1,14 @@
+# tomcat
+server:
+  port: 8002
+spring:
+  application:
+    name: demo-backup
+# backup datasource
+demo:
+  backup:
+    datasource:
+      host: localhost
+      userName: root
+      password: Pass1111
+      database: demo

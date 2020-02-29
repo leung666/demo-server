@@ -13,11 +13,11 @@ public class JwtAuthenticatioToken extends UsernamePasswordAuthenticationToken {
 
     private String token;
 
-    public JwtAuthenticatioToken(Object principal, Object credentials){
+    public JwtAuthenticatioToken(Object principal, Object credentials) {
         super(principal, credentials);
     }
 
-    public JwtAuthenticatioToken(Object principal, Object credentials, String token){
+    public JwtAuthenticatioToken(Object principal, Object credentials, String token) {
         super(principal, credentials);
         this.token = token;
     }
